@@ -1,8 +1,8 @@
 # Limit Order Book Simulator
 
-A simple Java implementation of a **Limit Order Book (LOB)** built to understand how modern exchanges match buy and sell orders.
+A simple Java implementation of a **Limit Order Book (LOB)** built to understand how modern exchanges store and match buy and sell orders.
 
-This project focuses on implementing the core matching engine from scratch using Java and object-oriented programming.
+This project focuses on implementing the core matching engine from scratch using Java, object-oriented programming, and priority queues.
 
 ---
 
@@ -10,14 +10,21 @@ This project focuses on implementing the core matching engine from scratch using
 
 **v1.0**
 
-This version implements the basic order matching algorithm using priority queues.
+This is the initial version of the project. It is a **terminal-based simulator** that generates random buy and sell orders, stores them in separate order books, and executes trades according to **price-time priority**.
+
+Each order is timestamped using Java's `LocalTime` to preserve the arrival order of orders placed at the same price, simulating the time-priority rule followed by modern exchanges.
+
+The objective of this version is to understand and implement the core matching logic of a limit order book rather than build a complete trading platform.
 
 ---
 
 ## Features
 
 * Buy and Sell order books
+* Random order generation for simulation
+* Terminal-based order book visualization
 * Price-Time Priority
+* Timestamp-based ordering using `java.time.LocalTime`
 * Automatic order matching
 * Partial order execution
 * Complete order execution
@@ -28,12 +35,13 @@ This version implements the basic order matching algorithm using priority queues
 
 ## Project Goal
 
-The goal of this project is to understand the internal working of a stock exchange matching engine rather than using existing implementations.
+The goal of this project is to understand how a stock exchange's matching engine works internally by implementing the core order matching algorithm from scratch.
 
-It is intended as a learning project covering:
+Topics explored in this project include:
 
 * Data Structures
 * Object-Oriented Programming
+* Java Collections Framework
 * Market Microstructure
 * Matching Algorithms
 
@@ -90,9 +98,11 @@ flowchart LR
 
 ---
 
-## Order Matching Example
+## Example Order Matching
 
 ```text
+Initial Order Book
+
 BUY BOOK                    SELL BOOK
 
 104.50  Qty 2               99.20  Qty 3
@@ -100,11 +110,13 @@ BUY BOOK                    SELL BOOK
 
 ↓
 
-Trade
+Trade Executed
 
-Executed Quantity = 2
+Quantity = 2
 
 ↓
+
+Updated Order Book
 
 BUY BOOK                    SELL BOOK
 
@@ -116,35 +128,68 @@ BUY BOOK                    SELL BOOK
 
 ## Current Limitations
 
-This version does not include:
+This version is intended as a learning project and does not yet include:
 
 * Market Orders
-* Order Cancellation
 * Order IDs
-* Persistent Storage
-* Interactive CLI
-* Price-Level Data Structures (`TreeMap`)
+* Order Cancellation
+* Interactive command-line interface
+* Persistent storage
+* Price-level based order books (`TreeMap`)
+* Performance benchmarking
+* Unit tests
 
 ---
 
 ## Future Improvements
 
-* Add Order IDs
-* Support Market Orders
-* Support Order Cancellation
-* Improve Order Book Visualization
-* Replace current implementation with a price-level based order book
-* Add Unit Tests
-* Add Performance Benchmarks
+* Add unique Order IDs
+* Support order cancellation
+* Support market orders
+* Interactive command-line interface
+* Better order book visualization
+* Replace the current implementation with a price-level based order book (`TreeMap<Price, Queue<Order>>`)
+* Performance benchmarks
+* Unit tests
+* Trade history and execution reports
 
 ---
 
 ## Technologies Used
 
 * Java
-* PriorityQueue
-* LocalTime
+* Java Collections Framework
+* `PriorityQueue`
+* `Comparable`
+* `LocalTime`
 * Object-Oriented Programming
 * Abstract Classes
 * Inheritance
-* Comparable Interface
+
+---
+
+## Learning Outcomes
+
+This project helped reinforce concepts including:
+
+* Priority Queues
+* Custom ordering using `Comparable`
+* Abstract classes and inheritance
+* Object-oriented design
+* Order matching algorithms
+* Price-Time Priority
+* Partial and complete order execution
+* Basic market microstructure concepts
+
+---
+
+## Running the Project
+
+Compile and run the project using Java:
+
+```bash
+javac Main.java
+java Main
+```
+
+The program generates random buy and sell orders, displays the order books, executes trades while matching orders based on price-time priority, and prints the updated order book after each trade.
