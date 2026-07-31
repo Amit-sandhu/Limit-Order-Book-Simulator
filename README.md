@@ -73,6 +73,19 @@ flowchart LR
 
     F -->|Yes| G[Execute Trade]
     F -->|No| H[Order Remains in Book]
+
+    style A fill:#1f77b4,stroke:#0d3b66,color:#ffffff
+    style B fill:#d62728,stroke:#7f1d1d,color:#ffffff
+
+    style C fill:#4f46e5,stroke:#312e81,color:#ffffff
+    style D fill:#4f46e5,stroke:#312e81,color:#ffffff
+
+    style E fill:#10b981,stroke:#065f46,color:#ffffff
+
+    style F fill:#f59e0b,stroke:#92400e,color:#ffffff
+
+    style G fill:#22c55e,stroke:#166534,color:#ffffff
+    style H fill:#6b7280,stroke:#374151,color:#ffffff
 ```
 
 ---
